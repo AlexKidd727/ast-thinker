@@ -1,0 +1,28 @@
+# Виртуальное окружение и кэш
+venv
+.venv
+env
+__pycache__
+*.py[cod]
+*.pyo
+.pytest_cache
+.mypy_cache
+
+# Данные и загрузки (в контейнере используются volume)
+data
+uploads
+
+# Git и IDE
+.git
+.gitignore
+.cursor
+
+# Резервные копии и лишнее
+*.bak
+*.bak1
+*.bak2
+*.bak3
+info.txt
+
+# Локальный .env не копируем в образ (секреты задаются через env_file при запуске)
+.env

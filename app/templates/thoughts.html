@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Журнал мыслей — AST-Thinker{% endblock %}
+{% block body_class %}page-thoughts{% endblock %}
+{% block content %}
+<div class="journal-container">
+    <h1>Журнал текущих мыслей</h1>
+    <div class="thinking-controls">
+        <span class="thinking-label">Процесс мышления:</span>
+        <span class="thinking-status" id="thinkingStatus">—</span>
+        <button type="button" id="thinkingStart">Запустить</button>
+        <button type="button" id="thinkingStop">Остановить</button>
+    </div>
+    <p class="journal-desc">Краткосрочная память: последние саморазмышления. <button type="button" id="thoughtsSummarize" class="journal-summarize-btn">Обобщить</button>
+    <span id="thoughtsSummarizeProgressWrap" class="journal-summarize-progress-wrap" style="display: none;">
+        <span id="thoughtsSummarizeStatus" class="journal-summarize-status"></span>
+        <span class="journal-summarize-bar-wrap"><span id="thoughtsSummarizeBar" class="journal-summarize-bar"></span></span>
+    </span> <button type="button" id="thoughtsClear" class="journal-clear-btn">Очистить журнал</button> <button type="button" id="thoughtsArchive" class="journal-archive-btn">Архивировать и очистить</button> <a href="{{ url_for('export_thoughts_md') }}" class="journal-export-btn" download>Экспорт в MD</a></p>
+    <div class="journal-meta" id="thoughtsMeta" aria-label="Модель и параметры"></div>
+    <div class="journal-list-wrap">
+        <div class="journal-list" id="thoughtsList"></div>
+        <div class="journal-load-more" id="thoughtsLoadMoreWrap" style="display: none;">
+            <button type="button" id="thoughtsLoadMore" class="journal-load-more-btn">Загрузить ещё</button>
+            <span class="journal-load-more-info" id="thoughtsLoadMoreInfo"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/thinking.js') }}"></script>
+<script src="{{ url_for('static', filename='js/thoughts.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,7 @@
+# Рекомендуется Python 3.11 или 3.12 (на Windows с 3.13 для aiogram/aiohttp/pydantic нужны C++ Build Tools)
+# LLM: вызовы к LM Studio/OpenAI-API по HTTP из app/llm.py (без пакета openai — обход ошибки pydantic by_alias)
+aiogram==3.2.0
+Flask==3.0.0
+SQLAlchemy==2.0.38
+python-dotenv==1.0.1
+SQLAlchemy-Utils==0.41.0

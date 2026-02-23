@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Чат — AST-Thinker{% endblock %}
+{% block body_class %}page-chat{% endblock %}
+{% block content %}
+<div class="chat-container">
+    <h1>Чат с ботом</h1>
+    <p class="chat-hint">Можно приложить файл (txt, md, py и др.) — он будет учтён как «пища для размышлений». <button type="button" id="chatClear" class="chat-clear-btn">Очистить чат</button></p>
+    <div class="chat-summary-info" id="chatSummaryInfo"></div>
+    <div class="chat-meta" id="chatMeta" aria-label="Модель и параметры"></div>
+    <div class="chat-messages-wrap">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-load-more" id="chatLoadMoreWrap" style="display: none;">
+            <button type="button" id="chatLoadMore" class="chat-load-more-btn">Загрузить ещё</button>
+            <span class="chat-load-more-info" id="chatLoadMoreInfo"></span>
+        </div>
+    </div>
+    <form class="chat-form" id="chatForm">
+        <div class="chat-input-row">
+            <textarea name="text" id="chatText" rows="2" placeholder="Сообщение..."></textarea>
+            <label class="file-label">
+                <input type="file" name="files" id="chatFiles" multiple accept=".txt,.md,.json,.csv,.log,.py,.html,.css,.js">
+                <span class="file-label-text">Файл</span>
+            </label>
+            <button type="submit" id="chatSend">Отправить</button>
+            <button type="button" id="chatThinkNow" class="chat-think-btn" title="Добавить текст из поля ввода в поток мыслей и запустить цикл размышлений">Обдумай</button>
+        </div>
+        <div class="chat-files-list" id="chatFilesList"></div>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

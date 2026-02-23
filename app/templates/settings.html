@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Настройки — AST-Thinker{% endblock %}
+{% block body_class %}page-settings{% endblock %}
+{% block content %}
+<div class="settings-container">
+    <h1>Настройки</h1>
+    <form class="settings-form" id="settingsForm">
+        <label>
+            Провайдер LLM
+            <select name="llm_provider" id="llmProvider">
+                <option value="lm_studio">LM Studio (локальный)</option>
+                <option value="openrouter">OpenRouter.ai</option>
+            </select>
+        </label>
+        <label id="openrouterKeyLabel" class="openrouter-only" style="display: none;">
+            Токен OpenRouter
+            <input type="password" name="openrouter_api_key" id="openrouterApiKey" placeholder="sk-or-..." autocomplete="off" title="API-ключ с openrouter.ai">
+        </label>
+        <label>
+            Модель
+            <select name="model_name" id="modelName">
+                <option value="">— загрузка —</option>
+            </select>
+            <button type="button" id="loadModelsBtn">Загрузить модели</button>
+        </label>
+        <label>
+            Минут без сообщений от пользователя до перехода в режим размышлений
+            <input type="number" name="idle_minutes" id="idleMinutes" min="0" step="1" title="0 = всегда разрешать размышления">
+        </label>
+        <label>
+            Периодичность саморазмышлений (секунды)
+            <input type="number" name="intro_interval" id="introInterval" min="10" step="1" title="мин. 10 с">
+        </label>
+        <label>
+            Лимит токенов на саморазмышление
+            <input type="number" name="intro_max_tokens" id="introMaxTokens" min="128" step="1">
+        </label>
+        <label>
+            Макс. токенов ответа в чате
+            <input type="number" name="chat_max_tokens" id="chatMaxTokens" min="64" step="1" title="При малом значении ответы обрезаются по лимиту (обрыв на полуслове). Рекомендуется 1024–2048.">
+        </label>
+        <label class="settings-checkbox">
+            <input type="checkbox" name="model_thinking_disabled" id="modelThinkingDisabled">
+            Отключить режим размышлений модели (reasoning/thinking): все токены — в ответ, не во внутренние размышления
+        </label>
+        <label>
+            Лимит токенов на размышления модели до ответа (0 = не ограничивать)
+            <input type="number" name="model_thinking_max_tokens" id="modelThinkingMaxTokens" min="0" step="1" title="Макс. токенов на внутренние размышления модели до ответа. Поддерживается не всеми API.">
+        </label>
+        <label>
+            Температура ответов (0–2)
+            <input type="number" name="temperature" id="temperature" min="0" max="2" step="0.1" title="0 = детерминированно, 2 = креативнее">
+        </label>
+        <label>
+            Суммаризация чата раз в N сообщений (0 = выключено)
+            <input type="number" name="summarize_every_n" id="summarizeEveryN" min="0" step="1" title="Каждые N сообщений диалог суммаризируется для контекста">
+        </label>
+        <label>
+            Порог повторений (0–1): при сходстве двух последних мыслей выше порога размышления останавливаются
+            <input type="number" name="repetition_threshold" id="repetitionThreshold" min="0" max="1" step="0.05" title="Например 0.7 = 70% совпадающих слов">
+        </label>
+        <label>
+            Первичный промпт для саморазмышлений
+            <textarea name="intro_prompt" id="introPrompt" rows="4"></textarea>
+        </label>
+        <button type="submit">Сохранить</button>
+    </form>
+    <p class="settings-note" id="settingsNote"></p>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

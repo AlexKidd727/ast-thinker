@@ -1,0 +1,33 @@
+# AST-Thinker: веб-интерфейс и планировщик саморазмышлений.
+# .env не обязателен: значения по умолчанию ниже. Если создадите .env — Compose подхватит переменные оттуда.
+services:
+  thinker:
+    build: .
+    container_name: thinker
+    ports:
+      - "7111:7111"
+    environment:
+      - PORT=7111
+      - DB_PATH=/app/data/db.sqlite
+      - UPLOAD_FOLDER=/app/uploads
+      # LM Studio на хосте: из контейнера доступ через host.docker.internal (Docker Desktop Windows/Mac)
+      - API_BASE_URL=${API_BASE_URL:-http://host.docker.internal:1234}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - API_KEY=${API_KEY:-dummy}
+      - MODEL_NAME=${MODEL_NAME:-}
+      - INTRO_INTERVAL=${INTRO_INTERVAL:-300}
+      - MAX_TOKENS=${MAX_TOKENS:-1024}
+      - INTRO_MAX_TOKENS=${INTRO_MAX_TOKENS:-512}
+      - DEBUG=${DEBUG:-True}
+      - DEFAULT_INTRO_PROMPT=${DEFAULT_INTRO_PROMPT:-Ты — мыслящая система. Кратко поразмышляй о текущем состоянии знаний и приоритетах. Будь лаконичен.}
+    volumes:
+      - thinker_data:/app/data
+      - thinker_uploads:/app/uploads
+    # Чтобы host.docker.internal работал и на Linux (в Desktop для Windows/Mac уже есть)
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+volumes:
+  thinker_data:
+  thinker_uploads:

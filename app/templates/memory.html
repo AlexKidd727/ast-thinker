@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Долговременная память — AST-Thinker{% endblock %}
+{% block body_class %}page-memory{% endblock %}
+{% block content %}
+<div class="journal-container">
+    <h1>Долговременная память</h1>
+    <p class="journal-desc">Записи, помеченные как важные для запоминания.</p>
+    <form class="memory-add-form" id="memoryAddForm">
+        <textarea name="text" id="memoryText" rows="3" placeholder="Текст для долговременной памяти..."></textarea>
+        <input type="text" name="tags" id="memoryTags" placeholder="Теги (через запятую)">
+        <button type="submit">Добавить</button>
+    </form>
+    <div class="journal-list" id="memoryList"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/memory.js') }}"></script>
+{% endblock %}

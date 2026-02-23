@@ -1,0 +1,667 @@
+/* AST-Thinker: общие стили, навигация, страницы */
+
+:root {
+    --bg: #1a1b26;
+    --surface: #24283b;
+    --text: #c0caf5;
+    --muted: #565f89;
+    --accent: #7aa2f7;
+    --accent-hover: #89b4fa;
+    --border: #3b4261;
+    --user-msg-bg: #2d3348;
+    --bot-msg-bg: #1f2335;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+.nav {
+    background: var(--surface);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.nav a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: var(--accent-hover);
+}
+
+.main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.thinking-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.thinking-label {
+    font-weight: 500;
+}
+
+.thinking-status {
+    color: var(--muted);
+    min-width: 5rem;
+}
+
+.thinking-controls button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.thinking-controls button:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+
+.page-home ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page-home li {
+    margin-bottom: 0.5rem;
+}
+
+.page-home a {
+    color: var(--accent);
+}
+
+/* Чат */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    min-height: 400px;
+}
+
+.chat-hint {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.chat-summary-info {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    padding: 0.35rem 0;
+}
+
+.chat-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
+    line-height: 1.35;
+}
+
+.chat-messages-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.chat-load-more {
+    padding: 0.5rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.chat-load-more-btn, .journal-load-more-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.chat-load-more-btn:hover, .journal-load-more-btn:hover {
+    background: var(--bg);
+}
+
+.chat-load-more-info, .journal-load-more-info {
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.chat-msg {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    max-width: 85%;
+}
+
+.chat-msg.user {
+    background: var(--user-msg-bg);
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.chat-msg.assistant {
+    background: var(--bot-msg-bg);
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.chat-msg time {
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.chat-msg-meta {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 0.35rem;
+}
+
+/* Вывод Markdown (ответы LLM в чате и журнале) */
+.msg-content.markdown-content {
+    word-wrap: break-word;
+}
+.markdown-content p {
+    margin: 0 0 0.5rem 0;
+}
+.markdown-content p:last-child {
+    margin-bottom: 0;
+}
+.markdown-content ul,
+.markdown-content ol {
+    margin: 0.25rem 0;
+    padding-left: 1.5rem;
+}
+.markdown-content li {
+    margin-bottom: 0.15rem;
+}
+.markdown-content code {
+    background: var(--surface);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.markdown-content pre {
+    background: var(--surface);
+    padding: 0.75rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+.markdown-content pre code {
+    padding: 0;
+    background: none;
+}
+.markdown-content strong {
+    font-weight: 600;
+}
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    margin: 0.75rem 0 0.35rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.chat-form {
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.chat-input-row textarea {
+    flex: 1;
+    min-height: 48px;
+    resize: vertical;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.chat-input-row button {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chat-input-row button:hover {
+    background: var(--accent-hover);
+}
+
+.chat-input-row button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.chat-input-row button.chat-think-btn {
+    background: var(--surface);
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.chat-input-row button.chat-think-btn:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.chat-hint .chat-clear-btn {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-hint .chat-clear-btn:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.file-label {
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.file-label input {
+    display: none;
+}
+
+.chat-files-list {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* Журналы */
+.journal-container h1 {
+    margin-top: 0;
+}
+
+.journal-desc {
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.journal-desc.muted {
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+}
+
+.journal-desc .journal-summarize-btn {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.journal-desc .journal-summarize-btn:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.journal-summarize-progress-wrap {
+    display: inline-block;
+    margin-left: 0.75rem;
+    vertical-align: middle;
+}
+
+.journal-summarize-status {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-right: 0.5rem;
+}
+
+.journal-summarize-bar-wrap {
+    display: inline-block;
+    width: 120px;
+    height: 6px;
+    background: var(--surface);
+    border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.journal-summarize-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--accent, #4a9);
+    border-radius: 3px;
+    transition: width 0.25s ease;
+}
+
+.journal-desc .journal-clear-btn {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.journal-desc .journal-clear-btn:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.journal-desc .journal-export-btn {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.journal-desc .journal-export-btn:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.journal-desc .journal-archive-btn {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.journal-desc .journal-archive-btn:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.journal-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
+    line-height: 1.35;
+}
+
+.journal-list-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.journal-list {
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.journal-load-more {
+    padding: 0.5rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.journal-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.journal-item time {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.journal-item-num {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.journal-item .tags {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+}
+
+.journal-item-meta {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 0.35rem;
+}
+
+/* Долговременная память: форма добавления */
+.memory-add-form {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.memory-add-form textarea,
+.memory-add-form input[type="text"] {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.memory-add-form button {
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Настройки */
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 560px;
+}
+
+.settings-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.settings-form label.settings-checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.settings-form label.settings-checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.settings-form input[type="number"],
+.settings-form textarea,
+.settings-form select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.settings-form select {
+    min-width: 12rem;
+}
+
+.settings-form button {
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.settings-note {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* История (архивы веток размышлений) */
+.history-container h1 {
+    margin-top: 0;
+}
+
+.history-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.history-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.history-item-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.history-item-name {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.history-item-meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.history-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.history-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.history-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+
+.history-btn-delete {
+    color: var(--muted);
+}
+
+.history-btn-delete:hover {
+    color: #f7768e;
+    border-color: #f7768e;
+    background: transparent;
+}
+
+.error-msg {
+    color: #f7768e;
+    font-size: 0.9rem;
+}
+
+.white-space-pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+}

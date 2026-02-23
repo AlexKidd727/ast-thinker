@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}AST-Thinker — Главная{% endblock %}
+{% block content %}
+<div class="page-home">
+    <h1>AST-Thinker</h1>
+    <p>Бот с краткосрочной и долгосрочной памятью, саморазмышлениями и чатом.</p>
+    <div class="thinking-controls">
+        <span class="thinking-label">Процесс мышления:</span>
+        <span class="thinking-status" id="thinkingStatus">—</span>
+        <button type="button" id="thinkingStart">Запустить</button>
+        <button type="button" id="thinkingStop">Остановить</button>
+    </div>
+    <ul>
+        <li><a href="{{ url_for('chat_page') }}">Чат</a> — общение с учётом мыслей и памяти, можно приложить файл.</li>
+        <li><a href="{{ url_for('thoughts_page') }}">Журнал мыслей</a> — текущие саморазмышления.</li>
+        <li><a href="{{ url_for('history_page') }}">История</a> — архивы веток размышлений, восстановление.</li>
+        <li><a href="{{ url_for('memory_page') }}">Долговременная память</a> — что помечено как важное.</li>
+        <li><a href="{{ url_for('settings_page') }}">Настройки</a> — периодичность циклов, лимит токенов, промпт.</li>
+    </ul>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/thinking.js') }}"></script>
+{% endblock %}
